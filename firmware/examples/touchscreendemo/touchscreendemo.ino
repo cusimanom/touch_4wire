@@ -2,7 +2,6 @@
 // as oversampling to avoid 'bouncing'
 // This demo code returns raw readings, public domain
 
-#include <stdint.h>
 #include "Touch_4Wire.h"
 
 #define YP A0  // must be an analog pin, use "An" notation!
