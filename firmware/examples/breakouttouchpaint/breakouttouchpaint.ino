@@ -15,8 +15,8 @@
 
 /** NOT FOR USE WITH THE TOUCH SHIELD, ONLY FOR THE 3.5" BREAKOUT! **/
 
-#include "Adafruit_HX8357.h"
-#include "Touch_4Wire.h"
+#include "Adafruit_HX8357/Adafruit_HX8357.h"
+#include "Touch_4Wire/Touch_4Wire.h"
 
 #undef DEBUG
 
