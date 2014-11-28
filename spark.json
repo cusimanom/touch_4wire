@@ -1,0 +1,7 @@
+{
+	"name": "Touch_4Wire",
+	"author": "ScruffR / Adafruit",
+	"version": "0.9.1",
+	"license": "Adafruit",
+	"description": "Adafruit 4-Wire-Touchscreen library"
+}
