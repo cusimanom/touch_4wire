@@ -3,13 +3,14 @@
 // (c) ladyada / adafruit
 // Code under MIT License
 //
-// ported for Spark Core by ScruffR Nov. 2014 
+// ported for Spark Core by ScruffR Nov. 2014
 
 #ifndef _ADAFRUIT_TOUCH4WIRE_H_
 #define _ADAFRUIT_TOUCH4WIRE_H_
-#include <stdint.h>
 
 #if defined (SPARK)
+#include "application.h"
+
 #define ADC_MAX_VALUE (0x0FFF)
 #define XY_TOLERANCE 15
 
@@ -18,6 +19,8 @@
 #define pinSetLow(pin)  PIN_MAP[pin].gpio_peripheral->BRR = PIN_MAP[pin].gpio_pin
 #define pinSet(pin, HILO) (HILO) ? pinSetHigh(pin) : pinSetLow(pin)
 #else
+#include <stdint.h>
+
 #define ADC_MAX_VALUE (0x03FF)
 #define XY_TOLERANCE 5
 #endif
