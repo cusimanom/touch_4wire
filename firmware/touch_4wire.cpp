@@ -3,7 +3,7 @@
 // (c) ladyada / adafruit
 // Code under MIT License
 //
-// ported for Spark Core by ScruffR Nov. 2014
+// ported for Spark Core by ScruffR Nov. 2014 
 
 #include "Touch_4Wire.h"
 

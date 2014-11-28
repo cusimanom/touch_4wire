@@ -3,7 +3,7 @@
 // (c) ladyada / adafruit
 // Code under MIT License
 //
-// ported for Spark Core by ScruffR Nov. 2014
+// ported for Spark Core by ScruffR Nov. 2014 
 
 #ifndef _ADAFRUIT_TOUCH4WIRE_H_
 #define _ADAFRUIT_TOUCH4WIRE_H_
