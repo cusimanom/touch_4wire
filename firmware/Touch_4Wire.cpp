@@ -30,6 +30,10 @@ TouchScreen::TouchScreen(uint8_t xp, uint8_t yp, uint8_t xm, uint8_t ym) {
   _xp = xp;
   _rxplate = 0;
   pressureThreshhold = 10;
+
+#if defined(MAKEFAIL)
+  build will fail if defined - to test if WebIDE lets you control lib behaviour from outside
+#endif
 }
 
 TouchScreen::TouchScreen(uint8_t xp, uint8_t yp, uint8_t xm, uint8_t ym,
