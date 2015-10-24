@@ -102,8 +102,8 @@ TSPoint TouchScreen::getPoint(void) {
   // ScruffR: I guess this should detach PULL_UPs
 #if defined (SPARK)
   // ScruffR: Since Spark Core has no PULL UPs with INPUT - not needed
-  //pinSetLow(_yp);
-  //pinSetLow(_ym);
+  //pinResetFast(_yp);
+  //pinResetFast(_ym);
 #else
   //digitalWrite(_yp, LOW);
   //digitalWrite(_ym, LOW);
@@ -115,8 +115,8 @@ TSPoint TouchScreen::getPoint(void) {
   pinMode(_xm, OUTPUT);
 
 #if defined (SPARK)
-  pinSetHigh(_xp);
-  pinSetLow(_xm);
+  pinSetFast(_xp);
+  pinResetFast(_xm);
 #else
   //digitalWrite(_xp, HIGH);
   //digitalWrite(_xm, LOW);
@@ -143,7 +143,7 @@ TSPoint TouchScreen::getPoint(void) {
    // ScruffR: I guess this should detach PULL_UPs
 #if defined (SPARK)
    // ScruffR: Since Spark Core has no PULL UPs with INPUT - not needed
-   //pinSetLow(_xp);
+   //pinResetFast(_xp);
 #else
    //digitalWrite(_xp, LOW);
    *portOutputRegister(xp_port) &= ~xp_pin;
@@ -153,8 +153,8 @@ TSPoint TouchScreen::getPoint(void) {
    pinMode(_ym, OUTPUT);
 
 #if defined (SPARK)
-   pinSetHigh(_yp);
-   pinSetLow(_ym);  // ScruffR: since we didn't do it before
+   pinSetFast(_yp);
+   pinResetFast(_ym);  // ScruffR: since we didn't do it before
 #else
    //digitalWrite(_yp, HIGH);
    *portOutputRegister(yp_port) |= yp_pin;
@@ -178,9 +178,9 @@ TSPoint TouchScreen::getPoint(void) {
    pinMode(_xp, OUTPUT);
 
 #if defined (SPARK)
-   pinSetLow(_xp);
-   pinSetHigh(_ym);
-   pinSetLow(_yp);
+   pinResetFast(_xp);
+   pinSetFast(_ym);
+   pinResetFast(_yp);
 #else
    //digitalWrite(_xp, LOW);
    *portOutputRegister(xp_port) &= ~xp_pin;
@@ -268,8 +268,8 @@ if (_prevAction != TOUCH_X) {
   pinMode(_xm, OUTPUT);
 
 #if defined(SPARK)
-  pinSetHigh(_xp);
-  pinSetLow(_xm);
+  pinSetFast(_xp);
+  pinResetFast(_xm);
 #else
   digitalWrite(_yp, LOW);
   digitalWrite(_ym, LOW);
@@ -292,8 +292,8 @@ int TouchScreen::readTouchY(void) {
     pinMode(_ym, OUTPUT);
 
 #if defined (SPARK)
-    pinSetHigh(_yp);
-    pinSetLow(_ym);
+    pinSetFast(_yp);
+    pinResetFast(_ym);
 #else
     digitalWrite(_xp, LOW);
     digitalWrite(_xm, LOW);
@@ -316,11 +316,11 @@ uint16_t TouchScreen::pressure(void) {
     pinMode(_ym, OUTPUT);
 
 #if defined(SPARK)
-    pinSetLow(_xp);
-    pinSetHigh(_ym);
+    pinResetFast(_xp);
+    pinSetFast(_ym);
     // ScruffR: Since Spark Core has no PULL UPs with INPUT - not needed
-    //pinSetLow(_xm);
-    //pinSetLow(_yp);
+    //pinResetFast(_xm);
+    //pinResetFast(_yp);
 #else
     // Set X+ to ground
     digitalWrite(_xp, LOW);
