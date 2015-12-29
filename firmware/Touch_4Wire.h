@@ -3,37 +3,24 @@
 // (c) ladyada / adafruit
 // Code under MIT License
 //
-// ported for Spark Core by ScruffR Nov. 2014
+// ported for Spark Core by ScruffR Nov. 2014 additions Wesner0019 June 2015
+// https://github.com/ScruffR/touch_4wire/tree/master/firmware
 
 #ifndef _ADAFRUIT_TOUCH4WIRE_H_
 #define _ADAFRUIT_TOUCH4WIRE_H_
 
-#if defined(SPARK)
 #include "application.h"
-
-// some very useful macros for Spark Core and porting Arduino libraries for it
-
-#if (SYSTEM_VERSION < 0x00040400) // no fast pin functions before 0.4.4
-#if defined(STM32F2XX)  // for the Photon and friends
-#define pinResetFast(_pin)	               (PIN_MAP[_pin].gpio_peripheral->BSRRH = PIN_MAP[_pin].gpio_pin)
-#define pinSetFast(_pin)	                 (PIN_MAP[_pin].gpio_peripheral->BSRRL = PIN_MAP[_pin].gpio_pin)
-#elif defined(STM32F10X_MD)  // for the Core
-#define pinResetFast(_pin)	               (PIN_MAP[_pin].gpio_peripheral->BRR = PIN_MAP[_pin].gpio_pin)
-#define pinSetFast(_pin)	                 (PIN_MAP[_pin].gpio_peripheral->BSRR = PIN_MAP[_pin].gpio_pin)
-#endif
-#define digitalWriteFast(_pin, _hilo)      (_hilo ? pinSetFast(_pin) : pinResetFast(_pin))
-#define pinReadFast(_pin)                  (PIN_MAP[_pin].gpio_peripheral->IDR & PIN_MAP[_pin].gpio_pin ? 0xFF : LOW)
-#endif
-
 #define ADC_MAX_VALUE (0x0FFF)
-#define XY_TOLERANCE 15
+#define XY_TOLERANCE 20
 
+#if  (PLATFORM_ID) == 6
+    #define pinSetLow(pin) PIN_MAP[pin].gpio_peripheral->BSRRH = PIN_MAP[pin].gpio_pin
+    #define pinSetHigh(pin) PIN_MAP[pin].gpio_peripheral->BSRRL = PIN_MAP[pin].gpio_pin
 #else
-#include <stdint.h>
-
-#define ADC_MAX_VALUE (0x03FF)
-#define XY_TOLERANCE 5
+    #define pinSetHigh(pin) PIN_MAP[pin].gpio_peripheral->BSRR = PIN_MAP[pin].gpio_pin
+    #define pinSetLow(pin)  PIN_MAP[pin].gpio_peripheral->BRR = PIN_MAP[pin].gpio_pin
 #endif
+ 
 
 typedef enum TOUCH_ACTIONS {
   TOUCH_UNDEF,
